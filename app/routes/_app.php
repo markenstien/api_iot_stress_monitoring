@@ -13,3 +13,5 @@ app()->get('/api/v1/sensor-response/', function () {
 });
 
 app()->post('/api/v1/sensor-response-post', "SensorResponseController@index");
+app()->post('/api/v1/register', "UserController@register");
+app()->post('/api/v1/authenticate', "UserController@authenticate");
