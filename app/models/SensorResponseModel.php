@@ -24,6 +24,17 @@
             return $sensorData->save();
         }
 
+        public function getById($id) {
+            return parent::where('id', $id)->first();
+        }
+
+        public function converetSensorData($sensorData = []) {
+            if(!empty($sensorData) && is_array($sensorData)) {
+                foreach($sensorData as $key => $row) {
+                    dump($this->encodeOrDecodeData($row->response_data, false));
+                }
+            }
+        }
         /**
          * valid keys
          * pulseRate, bodyTemp, gsr

@@ -33,4 +33,12 @@
                 }
             }
         }
+
+        /**
+         * GET
+         */
+        public function show($id) {
+            $responseData = $this->modelSensorResponse->getById($id);
+            $this->modelSensorResponse->converetSensorData([$responseData]);
+        }
     }
