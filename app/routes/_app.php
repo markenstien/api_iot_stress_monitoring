@@ -22,6 +22,6 @@ app()->get('/api/v1/sensor-response/{id}/sensor-data-only', "SensorResponseContr
 /**
  * user route
  */
-
+ app()->get('/api/v1/user/', "UserController@index");
  app()->get('/api/v1/user/{id}', "UserController@get");
  app()->get('/api/v1/sensor-response/sample', "SensorResponseController@sample");

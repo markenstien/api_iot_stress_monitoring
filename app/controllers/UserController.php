@@ -5,10 +5,16 @@ use App\Models\UserModel;
 
     class UserController extends Controller{
         protected $modelUser;
+
         public function __construct()
         {
             parent::__construct();
             $this->modelUser = new UserModel();
+        }
+
+
+        public function index() {
+            echo parent::apiResponse($this->modelUser->all());
         }
         
         public function authenticate() {
