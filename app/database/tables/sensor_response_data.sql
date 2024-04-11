@@ -15,16 +15,7 @@ create table sensor_response_process_data(
     remarks varchar(100)
 );
 
-create table users(
-    id int(10) not null primary key auto_increment,
-    fullname varchar(100) not null,
-    email varchar(50) not null,
-    age tinyint,
-    gender enum('male','female'),
-    password varchar(255),
-    last_login datetime
-);
-
+drop table if exists musics;
 create table musics(
     id int(10) not null primary key auto_increment,
     user_id int(10) not null,
@@ -33,7 +24,7 @@ create table musics(
     is_public boolean default true
 );
 
-
+drop table if exists devices;
 create table devices(
     id int(10) not null primary key auto_increment,
     wifi_ssid varchar(150),

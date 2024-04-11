@@ -39,6 +39,38 @@
          */
         public function show($id) {
             $responseData = $this->modelSensorResponse->getById($id);
-            $this->modelSensorResponse->converetSensorData([$responseData]);
+            $response = $this->modelSensorResponse->converetSensorData([$responseData]);
+
+            if($response) {
+                $resp = $this->apiResponse([
+                    'message' => 'sensor data',
+                    'sensorData' => $response
+                ]);
+
+                return $resp;
+            }
+
+            return false;
+        }
+
+
+        public function fetchSensorDataOnly($id) {
+            $responseData = $this->modelSensorResponse->getById($id);
+            $response = $this->modelSensorResponse->converetSensorData([$responseData]);
+            $responseDataConverted = $response[0];
+
+            
+            echo $this->apiResponse([
+                'message' => 'response data',
+                'sensorData' => $responseDataConverted->response_data
+            ]);
+        }
+
+
+        public function sample() {
+            echo $this->apiResponse([
+                'message' => 'sensor data',
+                'point'   => rand(1, 10)
+            ]);
         }
     }

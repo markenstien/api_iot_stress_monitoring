@@ -22,7 +22,7 @@ use App\Models\UserModel;
 
                 if(!$resp) {
                     echo parent::apiResponse([
-                        'message' => 'unable to authenticate user not found.'
+                        'message' => $this->modelUser->getMessageString()
                     ]);
                 } else{
                     echo parent::apiResponse([
@@ -63,5 +63,19 @@ use App\Models\UserModel;
                     }
                 }
             }
+        }
+
+        public function get($id) {
+            $user = $this->modelUser->getById($id);
+
+            if(!$user) {
+                $message = "User not found";
+            } else {
+                $message = "User found {$user->firstname}";
+            }
+            echo parent::apiResponse([
+                'message' => $message,
+                'data'    => $user
+            ]);
         }
     }

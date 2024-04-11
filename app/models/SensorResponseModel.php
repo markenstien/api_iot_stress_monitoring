@@ -31,9 +31,10 @@
         public function converetSensorData($sensorData = []) {
             if(!empty($sensorData) && is_array($sensorData)) {
                 foreach($sensorData as $key => $row) {
-                    dump($this->encodeOrDecodeData($row->response_data, false));
+                    $row->response_data = $this->encodeOrDecodeData($row->response_data, false);
                 }
             }
+            return $sensorData;
         }
         /**
          * valid keys
@@ -66,7 +67,7 @@
             return $sensorData;
         }
 
-        private function encodeOrDecodeData($sensorData, $encode = true) {
+        public function encodeOrDecodeData($sensorData, $encode = true) {
             if($encode) {
                 $sensorData = base64_encode(serialize($sensorData));
             } else {
