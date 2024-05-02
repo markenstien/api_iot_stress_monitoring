@@ -23,10 +23,10 @@ use App\Models\DeviceModel;
          * req: code
          */
         public function open() {
-            $req = request()->postData();
+            $code = request()->params('code');
 
-            if(!empty($req['code'])) {
-                $resp = $this->modelDevice->open($req['code']);
+            if(!empty($code)) {
+                $resp = $this->modelDevice->open($code);
                 echo $this->apiResponse([
                     'message' => $this->modelDevice->getMessageString(),
                     'success' => $resp ? 'TURNED ON' : 'ERROR',
@@ -44,10 +44,10 @@ use App\Models\DeviceModel;
          * close device
          */
         public function close() {
-            $req = request()->postData();
+            $code = request()->params('code');
 
-            if(!empty($req['code'])) {
-                $resp = $this->modelDevice->close($req['code']);
+            if(!empty($code)) {
+                $resp = $this->modelDevice->close($code);
                 echo $this->apiResponse([
                     'message' => $this->modelDevice->getMessageString(),
                     'success' => $resp ? 'TURNED ON' : 'ERROR',
