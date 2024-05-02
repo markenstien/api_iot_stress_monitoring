@@ -26,8 +26,6 @@ app()->post('/api/v1/authenticate', "UserController@authenticate");
  app()->group('/api/v1/sensor-data', function(){
     $controller = 'SensorResponseController';
     app()->get('/', "{$controller}@index");
-    app()->post('/', "{$controller}@index");
-
     app()->get('/recent', "{$controller}@recent");
     app()->get('/show/{id}', "{$controller}@show");
     app()->get('/show-sensor-data/{id}', "{$controller}@fetchSensorDataOnly");
@@ -38,8 +36,8 @@ app()->post('/api/v1/authenticate', "UserController@authenticate");
     $controller = 'DeviceController';
     app()->get('/', "{$controller}@fetchDevices");
     app()->get('/device-status', "{$controller}@getDeviceStatus");
-    app()->post('/open', "{$controller}@open");
-    app()->post('/close', "{$controller}@close");
+    app()->get('/open', "{$controller}@open");
+    app()->get('/close', "{$controller}@close");
  });
 
  app()->group('/api/v1/sensor-device', function() {
