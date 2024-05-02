@@ -31,6 +31,12 @@
                         'message' => 'something weng wroing'
                     ]);
                 }
+            } else {
+                $sensorDatas = $this->modelSensorResponse->all();
+                echo $this->apiResponse([
+                    'message' => 'sensor datas',
+                    'data' => $sensorDatas
+                ]);
             }
         }
 
@@ -66,11 +72,13 @@
             ]);
         }
 
-
-        public function sample() {
+        /**
+         *recent entry
+         */
+        public function recent() {
             echo $this->apiResponse([
-                'message' => 'sensor data',
-                'point'   => rand(1, 10)
+                'message' => 'Recent Data',
+                'sensorData' =>$this->modelSensorResponse->getLast()
             ]);
         }
     }

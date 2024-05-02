@@ -11,6 +11,7 @@ namespace App\Models;
 class Model extends \Leaf\Model
 {
     protected $messages = [];
+    protected $retVal = [];
 
     public function addMessage($message) {
         array_push($this->messages, $message);
@@ -23,5 +24,13 @@ class Model extends \Leaf\Model
 
     public function getMessageString() {
         return implode(',', $this->messages);
+    }
+
+    protected function addRetval($key, $value) {
+        $this->retVal[$key] = $value;
+    }
+
+    public function getRetval($key) {
+        return $this->retVal[$key] ?? null;
     }
 }

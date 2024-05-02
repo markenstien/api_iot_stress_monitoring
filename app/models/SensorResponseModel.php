@@ -19,13 +19,17 @@
             $sensorData = new SensorResponseModel();
             $sensorData->user_id = 1;
             $sensorData->response_data = $this->encodeOrDecodeData($validatedSensorData);
+            return $sensorData->save();  
             $sensorData->entry_date = tick()->format('YYYY-MM-DD HH:mm:ss');
 
-            return $sensorData->save();
         }
 
         public function getById($id) {
             return parent::where('id', $id)->first();
+        }
+    
+        public function getLast() {
+            return SensorResponseModel::orderBy('id', 'DESC')->first();
         }
 
         public function converetSensorData($sensorData = []) {
