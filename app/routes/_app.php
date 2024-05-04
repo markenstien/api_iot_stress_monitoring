@@ -26,6 +26,7 @@ app()->post('/api/v1/authenticate', "UserController@authenticate");
  app()->group('/api/v1/sensor-data', function(){
     $controller = 'SensorResponseController';
     app()->get('/', "{$controller}@index");
+    app()->post('/', "{$controller}@index");
     app()->get('/recent', "{$controller}@recent");
     app()->get('/show/{id}', "{$controller}@show");
     app()->get('/show-sensor-data/{id}', "{$controller}@fetchSensorDataOnly");
