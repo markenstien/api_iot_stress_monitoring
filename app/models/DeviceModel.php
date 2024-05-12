@@ -54,6 +54,20 @@
             }
         }
 
+        public function toggle($code) {
+            $device = $this->getByCode($code);
+
+            if(!$device) {
+                return false;
+            }
+
+            if($device->device_status == 'LOW') {
+                return $this->open($code);
+            } else {
+                return $this->close($code);
+            }
+        }
+
         public function getByCode($code) {
             return $this->where('device_code', $code)->first();
         }

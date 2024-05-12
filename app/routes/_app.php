@@ -39,6 +39,7 @@ app()->post('/api/v1/authenticate', "UserController@authenticate");
     app()->get('/device-status', "{$controller}@getDeviceStatus");
     app()->get('/open', "{$controller}@open");
     app()->get('/close', "{$controller}@close");
+    app()->get('/toggle', "{$controller}@toggle");
  });
 
  app()->group('/api/v1/sensor-device', function() {

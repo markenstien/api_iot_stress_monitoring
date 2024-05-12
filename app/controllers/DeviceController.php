@@ -61,6 +61,23 @@ use App\Models\DeviceModel;
             }
         }
 
+        public function toggle() {
+            $code = request()->params('code');
+            if(!empty($code)) {
+                $resp = $this->modelDevice->toggle($code);
+                echo $this->apiResponse([
+                    'message' => $this->modelDevice->getMessageString(),
+                    'success' => $resp ? 'TURNED ON' : 'ERROR',
+                    'device'  => $this->modelDevice->getRetval('device')
+                ]);
+            } else {
+                echo $this->apiResponse([
+                    'message' => 'Invalid Request device code not specified',
+                    'success' => 'ERROR',
+                ]);
+            }
+        }
+
         /**
          * fetch devices to check which are open or close
          */
@@ -77,7 +94,6 @@ use App\Models\DeviceModel;
         public function getDeviceStatus() {
             $deviceCode = request()->get('device_code');
             $device = $this->modelDevice->getByCode($deviceCode);
-
 
             echo parent::apiResponse([
                 'deviceCode' => $deviceCode,
