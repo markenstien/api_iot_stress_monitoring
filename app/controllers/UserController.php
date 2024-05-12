@@ -53,8 +53,7 @@ use App\Models\UserModel;
                 } else {
                     $resp = $this->modelUser->create([
                         'email' => $req['email'],
-                        'firstname' => $req['firstname'],
-                        'lastname' => $req['lastname'],
+                        'firstname' => $req['name'],
                         'password' => password_hash($req['password'], PASSWORD_DEFAULT)
                     ]);
 
