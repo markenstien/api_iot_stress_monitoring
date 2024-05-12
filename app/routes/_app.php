@@ -7,20 +7,13 @@ app()->get('/', function () {
     response()->json(['message' => 'Congrats!! You\'re on Leaf API']);
 });
 
-
-app()->get('/api/v1/sensor-response/', function () {
-    response()->json(['message' => 'Send Sensor One minute collected Data -> this will report success response']);
+app()->group('/api/v1/user', function(){
+   $controller = 'UserController';
+   app()->get('/', "{$controller}@index");
+   app()->post('/register', "{$controller}@register");
+   app()->post('/authenticate', "{$controller}@authenticate");
+   app()->get('/{id}', "{$controller}@get");
 });
-
-app()->post('/api/v1/register', "UserController@register");
-app()->post('/api/v1/authenticate', "UserController@authenticate");
-
-/**
- * user route
- */
- app()->get('/api/v1/user/', "UserController@index");
- app()->get('/api/v1/user/{id}', "UserController@get");
- app()->get('/api/v1/sensor-response/sample', "SensorResponseController@sample");
 
 
  app()->group('/api/v1/sensor-data', function(){
