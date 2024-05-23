@@ -11,6 +11,40 @@
             parent::__construct();
             $this->modelSensorResponse = new SensorResponseModel();
         }
+
+        /**
+         * store sensor data using get
+         */
+        public function store() {
+            $pulseRateData = request()->params('pulserate');
+            $temperatureData = request()->params('temperature');
+            $heartbeatData = request()->params('hearbeat');
+
+            /**
+             * convert each items to array
+             */
+
+            $pulseRateDataArray = array_walk(explode(',', $pulseRateData), 'trim');
+            $temperatureDataArray = array_walk(explode(',', $temperatureData), 'trim');
+            $heartbeatDataArray = array_walk(explode(',', $heartbeatData), 'trim');
+            
+            $resp = $this->modelSensorResponse->addPassOne([
+                'pulseRate' => $pulseRateDataArray,
+                'bodyTemp'   => $temperatureDataArray,
+                'gsr'    => $heartbeatDataArray
+            ]);
+            
+            if($resp) {
+                echo $this->apiResponse([
+                    'entryStatus' => $resp,
+                    'message' => 'Censor Data Stored'
+                ]);
+            } else {
+                echo $this->apiResponse([
+                    'message' => 'something weng wroing'
+                ]);
+            }
+        }
         /**
          * POST
          * payload = q

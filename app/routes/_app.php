@@ -23,7 +23,10 @@ app()->group('/api/v1/user', function(){
     app()->get('/recent', "{$controller}@recent");
     app()->get('/show/{id}', "{$controller}@show");
     app()->get('/show-sensor-data/{id}', "{$controller}@fetchSensorDataOnly");
+    app()->get('/store', "{$controller}@store");
  });
+
+ 
 
 
  app()->group('/api/v1/device', function() {
