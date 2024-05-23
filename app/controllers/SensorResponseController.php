@@ -28,9 +28,9 @@
             $temperatureDataArray = explode(',', $temperatureData);
             $heartbeatDataArray = explode(',', $heartbeatData);
 
-            $pulseRateDataArray = array_walk($pulseRateDataArray, 'trim');
-            $temperatureDataArray = array_walk($temperatureDataArray, 'trim');
-            $heartbeatDataArray = array_walk($heartbeatDataArray, 'trim');
+            // $pulseRateDataArray = array_walk($pulseRateDataArray, 'trim');
+            // $temperatureDataArray = array_walk($temperatureDataArray, 'trim');
+            // $heartbeatDataArray = array_walk($heartbeatDataArray, 'trim');
 
 
             
