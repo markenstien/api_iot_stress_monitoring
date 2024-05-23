@@ -43,7 +43,12 @@
             if($resp) {
                 echo $this->apiResponse([
                     'entryStatus' => $resp,
-                    'message' => 'Censor Data Stored'
+                    'message' => 'Censor Data Stored',
+                    'data' => [
+                        'pulseRateDataArray' => $pulseRateDataArray,
+                        'temperatureDataArray' => $temperatureDataArray,
+                        'heartbeatDataArray' => $heartbeatDataArray
+                    ]
                 ]);
             } else {
                 echo $this->apiResponse([
