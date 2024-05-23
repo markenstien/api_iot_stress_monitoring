@@ -16,9 +16,9 @@
          * store sensor data using get
          */
         public function store() {
-            $pulseRateData = request()->params('pulserate');
-            $temperatureData = request()->params('temperature');
-            $heartbeatData = request()->params('hearbeat');
+            $pulseRateData = request()->get('pulserate');
+            $temperatureData = request()->get('temperature');
+            $heartbeatData = request()->get('hearbeat');
 
             /**
              * convert each items to array
@@ -28,9 +28,9 @@
             $temperatureDataArray = explode(',', $temperatureData);
             $heartbeatDataArray = explode(',', $heartbeatData);
 
-            // $pulseRateDataArray = array_walk($pulseRateDataArray, 'trim');
-            // $temperatureDataArray = array_walk($temperatureDataArray, 'trim');
-            // $heartbeatDataArray = array_walk($heartbeatDataArray, 'trim');
+            $pulseRateDataArray = array_walk($pulseRateDataArray, 'trim');
+            $temperatureDataArray = array_walk($temperatureDataArray, 'trim');
+            $heartbeatDataArray = array_walk($heartbeatDataArray, 'trim');
 
 
             
