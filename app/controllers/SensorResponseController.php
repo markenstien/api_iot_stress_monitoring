@@ -24,16 +24,22 @@
              * convert each items to array
              */
 
-            $pulseRateDataArray = array_walk(explode(',', $pulseRateData), 'trim');
-            $temperatureDataArray = array_walk(explode(',', $temperatureData), 'trim');
-            $heartbeatDataArray = array_walk(explode(',', $heartbeatData), 'trim');
+            $pulseRateDataArray = explode(',', $pulseRateData);
+            $temperatureDataArray = explode(',', $temperatureData);
+            $heartbeatDataArray = explode(',', $heartbeatData);
+
+            $pulseRateDataArray = array_walk($pulseRateDataArray, 'trim');
+            $temperatureDataArray = array_walk($temperatureDataArray, 'trim');
+            $heartbeatDataArray = array_walk($heartbeatDataArray, 'trim');
+
+
             
             $resp = $this->modelSensorResponse->addPassOne([
                 'pulseRate' => $pulseRateDataArray,
                 'bodyTemp'   => $temperatureDataArray,
                 'gsr'    => $heartbeatDataArray
             ]);
-            
+
             if($resp) {
                 echo $this->apiResponse([
                     'entryStatus' => $resp,
